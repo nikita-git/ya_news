@@ -13,9 +13,6 @@ User = get_user_model()
 
 class TestRoutes(TestCase):
 
-    @classmethod
-    def setUpTestData(cls):
-        cls.news = News.objects.create(title='Заголовок', text='Текст')
 
     @classmethod
     def setUpTestData(cls):
