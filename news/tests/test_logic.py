@@ -1,4 +1,14 @@
 # news/tests/test_logic.py
+# Здесь тестируется:
+# - Анонимный пользователь не может отправить комментарий.
+# - Авторизованный пользователь может отправить комментарий.
+# - Если комментарий содержит запрещённые слова, он не будет опубликован,
+# а форма вернёт ошибку.
+# - Авторизованный пользователь может редактировать или удалять свои
+# комментарии.
+# - Авторизованный пользователь не может редактировать или удалять чужие
+# комментарии.
+
 from http import HTTPStatus
 
 from django.contrib.auth import get_user_model
@@ -148,4 +158,4 @@ class TestCommentEditDelete(TestCase):
         # Обновляем объект комментария.
         self.comment.refresh_from_db()
         # Проверяем, что текст остался тем же, что и был.
-        self.assertEqual(self.comment.text, self.COMMENT_TEXT) 
+        self.assertEqual(self.comment.text, self.COMMENT_TEXT)
