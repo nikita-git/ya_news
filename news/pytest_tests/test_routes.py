@@ -1,3 +1,4 @@
+"""Тесты маршрутов."""
 from http import HTTPStatus
 
 import pytest
@@ -35,7 +36,7 @@ def test_news_detail_anonymous(client, news):
 
 
 @pytest.mark.parametrize(
-    'name, args', (('news:edit', '1'),('news:delete', '1'),)
+    'name, args', (('news:edit', '1'), ('news:delete', '1'),)
 )
 def test_redirect_anonymous(client, name, args):
     """Редирект при попытке отредактировать и удалить комментарий анонимом."""
