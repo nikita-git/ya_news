@@ -1,8 +1,11 @@
 """Тесты маршрутов."""
 import pytest
+from django.utils import timezone
+from datetime import datetime, timedelta
 
 from django.test.client import Client
 
+from django.conf import settings
 from news.models import Comment, News
 
 
@@ -61,3 +64,20 @@ def other_comment(news, not_author):
         text='Текст комментария не автора.'
     )
     return comment
+
+
+@pytest.fixture
+def many_news():
+    """Создание новостей на несколько страниц."""
+    today = datetime.today()
+    all_news = [
+        News(
+            title=f'Новость {index}',
+            text='Просто текст.',
+            # Для каждой новости уменьшаем дату на index дней от today,
+            # где index - счётчик цикла.
+            date=today - timedelta(days=index)
+        )
+        for index in range(settings.NEWS_COUNT_ON_HOME_PAGE + 11)
+    ]
+    return News.objects.bulk_create(all_news)
