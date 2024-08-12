@@ -43,10 +43,21 @@ def news():
 
 @pytest.fixture
 def comment(news, author):
-    """Комментарий к новости."""
+    """Комментарий к новости автора."""
     comment = Comment.objects.create(
         news=news,
         author=author,
-        text='Текст комментария'
+        text='Текст комментария автора.'
+    )
+    return comment
+
+
+@pytest.fixture
+def other_comment(news, not_author):
+    """Комментарий к новости не автора."""
+    comment = Comment.objects.create(
+        news=news,
+        author=not_author,
+        text='Текст комментария не автора.'
     )
     return comment

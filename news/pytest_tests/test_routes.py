@@ -67,5 +67,4 @@ def test_availability_users(
     """Проверка доступа к комментарию пользователей и автора."""
     url = reverse(name, args=args)
     response = parameter_client.get(url)
-    print(f'----{url}----{response}----')
     assert response.status_code == expected_status

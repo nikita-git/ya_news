@@ -70,7 +70,7 @@ class TestCommentCreation(TestCase):
         # первое слово из списка стоп-слов.
         bad_words_data = {'text': f'Какой-то текст, {BAD_WORDS[0]}, еще текст'}
         # Отправляем запрос через авторизованный клиент.
-        response = self.auth_client.post(self.url, data=bad_words_data)
+        response = self.auth_client.post(url, data=bad_words_data)
         # Проверяем, есть ли в ответе ошибка формы.
         self.assertFormError(
             response,
